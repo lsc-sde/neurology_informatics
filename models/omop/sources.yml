@@ -1,0 +1,49 @@
+# Synthea sources to be used when not using the demonstration seeds
+version: 2
+
+sources:
+  - name: omop
+    schema: dbo
+    tables:
+      - name: care_site
+      - name: cdm_source
+      - name: cohort
+      - name: cohort_definition
+      - name: condition_era
+      - name: condition_occurrence
+      - name: cost
+      - name: death
+      - name: device_exposure
+      - name: domain
+      - name: dose_era
+      - name: drug_eraQ
+      - name: drug_exposure
+      - name: drug_strength
+      - name: episode
+      - name: episode_event
+      - name: fact_relationship
+      - name: location
+      - name: measurement
+      - name: metadata
+      - name: note
+      - name: note_nlp
+      - name: observation
+      - name: observation_period
+      - name: payer_plan_period
+      - name: person
+      - name: procedure_occurrence
+      - name: provider
+      - name: specimen
+      - name: visit_detail
+      - name: visit_occurrence
+  - name: vocab
+    schema: dbo
+    tables:
+      - name: concept
+      - name: concept_ancestor
+      - name: concept_class
+      - name: concept_relationship
+      - name: concept_synonym
+      - name: relationship
+      - name: source_to_concept_map
+      - name: vocabulary

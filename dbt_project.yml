@@ -1,17 +1,12 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: "dbt_template"
-version: "1.0.0"
+name: "dbt_neurology_informatics"
+version: "0.1.0"
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: "dbt_template"
-
-vars:
-  start_id: 0
-  refresh_days: 31
-  refresh_start_date: "2005-01-01 00:00:00"
+profile: "dbt_neurology_informatics"
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
