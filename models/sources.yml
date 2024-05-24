@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: test
+    tags: [test, test]
+    description: |
+      test
+    database: test
+    quoting:
+      database: false
+      schema: false
+      identifier: true
+    schema: test
+    tables:
+    - name: test
+      identifier: test
+  
