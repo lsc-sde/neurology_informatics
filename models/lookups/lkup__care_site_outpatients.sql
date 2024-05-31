@@ -4,7 +4,8 @@ select
 from
   {{ source('omop', 'care_site') }} as cs
 where
-  lower(cs.care_site_name) like '%neurol%'
+  lower(cs.care_site_name) like '%neuro%'
+  and lower(cs.care_site_name) not like '%neurosurg%'
   and
   (
     lower(cs.care_site_name) like '%outp%'

@@ -1,0 +1,32 @@
+version: 2
+models:
+  - name: lkup__care_site_outpatients
+    description: >
+      Lookup model that lists all neurology outpatient services.
+
+      There are several limitations to this approach but this model provides the basis for further refinement of how this data is captured within the EPR.
+
+      ## List of limitations:
+
+      ## Alternative approaches:
+
+      - Use a seed file with curated list of neurology outpatient services
+
+    columns: []
+
+  - name: lkup__provider
+    description: >
+      Lookup model that lists all neurology providers (consultants, specialist nurses, etc.)
+
+      There are several limitations to this approach but this model provides the basis for further refinement of how this data is captured within the EPR.
+
+      ## List of limitations:
+      
+      - Non-neurology consultants assigned to neurology or vice versa
+
+      ## Alternative approaches:
+
+      - Use a seed file with curated list of neurology providers
+
+    columns: []
+

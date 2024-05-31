@@ -1,35 +1,16 @@
-# DBT Template
+# Neurology Informatics
 
 __Data Science Team, Lancashire Teaching Hospitals NHS Foundation Trust__
 
 ## Introduction
 
-The Data Science Team and LAncs Teaching Hospitals has settled on using the data build tool (dbt) for structuring ETL (Extract, Transfrom, Load) workflows.
+Reproducible neurology informatics research centered around OMOP and related data sources.
 
-## Requirements
 
-## Instructions
+## Getting started
 
-1. Clone the repository.
-
-2. Create a ```.dbt``` folder in your user profile and create a file called ```profiles.yml```
-
-3. Copy the following into the file:
-
-```
-dbt_template:
-  target: dev
-  outputs:
-    dev:
-      type: sqlserver
-      driver: 'ODBC Driver 17 for SQL Server' # (The ODBC Driver installed on your system)
-      server: YOURSQLSERVER
-      port: 1433
-      database: dbt_template
-      schema: dbo
-      windows_login: True
-      trust_cert: True
-      threads: 4
-```
-
-4. Run ```dbt deps``` 
+1. Clone the repository
+2. Create a new virtual environment using either `conda`, `pipenv` or similar and activate that environment.
+3. Create a `.dbt` directory in your user profile directory (typically C:/Users/User.Name) and copy `profiles_sample.yml` into `.dbt` and rename it to `profiles.yml`. Modify the file with confguration provided by the data science team.
+4. Run `pip install -r requirements.txt` followed by `dbt deps`
+5. Install the [Power User for dbt Core extension for VS Code](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user)

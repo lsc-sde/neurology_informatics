@@ -1,0 +1,13 @@
+dbt_neurology_informatics:
+  target: dev
+  outputs:
+    dev:
+      type: sqlserver
+      driver: 'ODBC Driver 17 for SQL Server' # (The ODBC Driver installed on your system)
+      server: <SQLSERVER HOSTNAME>
+      port: 1433
+      database: <Name of database>
+      schema: neuro_<your initials>
+      windows_login: True
+      trust_cert: True
+      threads: 4

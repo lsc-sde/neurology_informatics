@@ -1,22 +1,29 @@
 select
-  vo.*,
-  p.provider_name,
-  p.specialty_source_value
-from {{ source('omop', 'visit_occurrence') }} as vo
-inner join {{ ref('lkup__provider') }} as p
-  on vo.provider_id = p.provider_id
-where vo.visit_source_value = 'OP'
-
-union
-
-select
-    vo.person_id,
   vo.visit_occurrence_id,
   vo.visit_start_date,
-  p.provider_name,
-  p.specialty_source_value
+  vo.person_id,
+  p.year_of_birth,
+  c_gender.concept_name as gender,
+  c_race.concept_name as ethnicity,
+  vo.visit_source_value as visit_type_source_value,
+  pr.provider_name,
+  pr.specialty_source_value
 from {{ source('omop', 'visit_occurrence') }} as vo
-inner join {{ ref('lkup__provider') }} as p
-  on vo.provider_id = p.provider_id
-where vo.visit_source_value = 'OP'
-
+inner join {{ source('omop', 'person') }} as p
+  on vo.person_id = p.person_id
+inner join {{ source('vocab', 'concept') }} as c_gender
+  on p.gender_concept_id = c_gender.concept_id
+inner join {{ source('vocab', 'concept') }} as c_race
+  on p.race_concept_id = c_race.concept_id
+join {{ source('omop', 'care_site') }} as cs
+on cs.care_site_id = vo.care_site_id
+join {{ source('omop', 'provider') }} as pr
+on pr.provider_id = vo.provider_id
+where
+  vo.visit_source_value = 'OP'
+  and vo.visit_start_date >= {{ var('clinic_visit_start_date') }}
+  and vo.visit_start_date <= {{ var('clinic_visit_end_date') }}
+  and (
+    vo.provider_id in (select distinct provider_id from {{ ref('lkup__provider') }})
+    or vo.care_site_id in (select distinct care_site_id from {{ ref('lkup__care_site_outpatients') }})
+  )
