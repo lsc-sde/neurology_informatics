@@ -24,11 +24,6 @@ where
   vo.visit_source_value = 'OP'
   and vo.visit_start_date >= {{ var('clinic_visit_start_date') }}
   and vo.visit_start_date <= {{ var('clinic_visit_end_date') }}
-  and (
-    vo.provider_id in (
-      select distinct provider_id from {{ ref('lkup__provider') }}
+  and vo.provider_id in (
+      select provider_id from {{ ref('Current_Neurology_providers') }}
     )
-    or vo.care_site_id in (
-      select distinct care_site_id from {{ ref('lkup__care_site_outpatients') }}
-    )
-  )
