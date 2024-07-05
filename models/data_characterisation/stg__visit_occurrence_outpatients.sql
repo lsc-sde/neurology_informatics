@@ -7,7 +7,8 @@ select
   c_race.concept_name as ethnicity,
   vo.visit_source_value as visit_type_source_value,
   pr.provider_name,
-  pr.specialty_source_value
+  pr.specialty_source_value,
+  cs.care_site_name
 from {{ source('omop', 'visit_occurrence') }} as vo
 inner join {{ source('omop', 'person') }} as p
   on vo.person_id = p.person_id
