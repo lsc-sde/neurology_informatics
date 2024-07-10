@@ -1,4 +1,8 @@
 select
+  case when month(visit_start_date) >= 4
+  then concat(year(visit_start_date), '/', year(visit_start_date) + 1)
+  else concat(year(visit_start_date) - 1, '/', year(visit_start_date))
+  end as financial_year,
   vo.visit_occurrence_id,
   vo.visit_start_date,
   vo.person_id,
