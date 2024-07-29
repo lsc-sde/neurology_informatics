@@ -1,6 +1,6 @@
 select
     specialty_source_value,
-    count(visit_occurrence_id) as num_visits
+    count(distinct(visit_occurrence_id)) as num_visits
 from {{ ref('stg__inpatient_occurrences') }}
 group by 
     specialty_source_value
