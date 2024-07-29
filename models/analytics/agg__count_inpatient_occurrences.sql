@@ -3,7 +3,7 @@ with counts as (
     'All' as year,
     count(*) as number_of_visits,
     count(distinct vo.person_id) as number_of_patients
-  from {{ ref('stg__inpatient_episodes') }} as vo
+  from {{ ref('stg__inpatient_occurrences') }} as vo
 
   union
 
@@ -11,7 +11,7 @@ with counts as (
     cast(year(vo.visit_start_date) as varchar) as year,
     count(*) as number_of_visits,
     count(distinct vo.person_id) as number_of_patients
-  from {{ ref('stg__inpatient_episodes') }} as vo
+  from {{ ref('stg__inpatient_occurrences') }} as vo
   group by year(vo.visit_start_date)
 )
 
