@@ -6,6 +6,7 @@ select
     MIN(length_of_stay) as minimum_length,
     MAX(length_of_stay) as max_length
 from {{ ref('agg__length_of_stay') }}
+where length_of_stay > 0
 group by 
     concept_name
 order by 
