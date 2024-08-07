@@ -78,8 +78,8 @@ measurement_cte AS (
         FROM {{ ref('Neurology_providers_incl_registrars') }}
     )
     AND discharge_diagnosis_type = 'Primary discharge diagnosis'
-)
-SELECT *
+),
+final as (SELECT *
 FROM observation_cte
 WHERE length_of_stay > 0
 UNION ALL
@@ -89,4 +89,11 @@ WHERE length_of_stay > 0
 UNION ALL
 SELECT *
 FROM measurement_cte
-WHERE length_of_stay > 0;
+WHERE length_of_stay > 0)
+
+select 
+    f.*, 
+    p.gender_source_value,
+    datediff(year, p.birth_datetime, f.visit_start_date) as age_at_visit
+from final f
+join {{ source('omop', 'person')}} p on f.person_id = p.person_id
