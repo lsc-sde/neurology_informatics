@@ -1,7 +1,7 @@
 select 
     measurement_concept_name, 
     count(person_id) as number_of_patients 
-from {{ ref('stg__measurements') }} 
+from {{ ref('stg__outpatient_measurements') }} 
 group by 
     measurement_concept_name
 order by 
