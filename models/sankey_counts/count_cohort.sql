@@ -1,2 +1,2 @@
-select(count(distinct(person_id))) as count
+select(count(person_id)) as count
 from {{ ref('cohort')}}
