@@ -42,6 +42,7 @@ models:
     description: >
       All conditions recorded at _any_ time for patients who had at least one neurology outpatient visit.
       This model uses the `condition_era` table instead of the `condition_occurrence` table.
+      
   - name: stg__distinct_patients
     description: >
       Distinct list of patients who had at least one neurology outpatient visit.
