@@ -9,7 +9,7 @@ select
     vo.visit_start_date as outpatient_appointment_date,
     vo.provider_name as outpatient_provider,
     vo.specialty_source_value as outpatient_specialty
-from  {{ source('omop', 'procedure_occurrence') }} as po
+from  {{ source('omop', 'procedure_occurrence') }}as po
 inner join {{ ref('stg__visit_occurrence_outpatients') }} as vo 
     on po.visit_occurrence_id = vo.visit_occurrence_id
 inner join {{ source('vocab', 'concept') }} as c
