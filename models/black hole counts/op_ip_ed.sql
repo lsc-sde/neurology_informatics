@@ -12,7 +12,8 @@ select
 	isnull(conditions, 0) as "Number of conditions",
 	isnull(procedures, 0) as "Number of procedures",
 	isnull(drugs, 0) as "Number of drugs",
-	isnull(measurements, 0) as "Number of measurements"
+	isnull(measurements, 0) as "Number of measurements",
+	isnull(observations, 0) as "Number of observations"
 from {{ ref('cohort') }} as c
 left join (
 	select person_id, count(*) as "conditions" from {{ source('omop', 'condition_occurrence') }} group by person_id
@@ -30,3 +31,7 @@ left join (
 	select person_id, count(*) as "measurements" from {{ source('omop', 'measurement') }} group by person_id
 	) m
 on c.person_id = m.person_id
+left join (
+	select person_id, count(*) as "observations" from {{ source('omop', 'observation') }} group by person_id
+	) o
+on c.person_id = o.person_id
