@@ -8,6 +8,9 @@ WITH cohort_observations AS (
     {{ ref('cohort') }} AS c
     ON
       o.person_id = c.person_id
+  WHERE
+    o.observation_date >= {{ var('clinic_visit_start_date') }}
+    AND o.observation_date <= {{ var('clinic_visit_end_date') }}
   GROUP BY
     o.observation_concept_id
 ),

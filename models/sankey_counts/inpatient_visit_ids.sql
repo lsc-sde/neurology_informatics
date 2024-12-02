@@ -1,4 +1,4 @@
-select distinct vo . visit_occurrence_id
+select distinct vo.visit_occurrence_id
 from
   {{ source('omop', 'visit_occurrence') }} as vo
 where
