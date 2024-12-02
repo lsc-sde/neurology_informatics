@@ -1,7 +1,8 @@
 select
-  case when month(visit_start_date) >= 4
-  then concat(year(visit_start_date), '/', year(visit_start_date) + 1)
-  else concat(year(visit_start_date) - 1, '/', year(visit_start_date))
+  case
+    when month(visit_start_date) >= 4
+      then concat(year(visit_start_date), '/', year(visit_start_date) + 1)
+    else concat(year(visit_start_date) - 1, '/', year(visit_start_date))
   end as financial_year,
   vo.visit_occurrence_id,
   vo.visit_start_date,
@@ -29,5 +30,5 @@ where
   and vo.visit_start_date >= {{ var('clinic_visit_start_date') }}
   and vo.visit_start_date <= {{ var('clinic_visit_end_date') }}
   and vo.provider_id in (
-      select provider_id from {{ ref('Current_Neurology_providers') }}
-    )
+    select provider_id from {{ ref('Current_Neurology_providers') }}
+  )
