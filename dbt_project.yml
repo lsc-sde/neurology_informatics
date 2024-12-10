@@ -11,8 +11,8 @@ profile: "dbt_neurology_informatics"
 # Set the global project variables here
 # For instance, to restrict visits to certain dates
 vars:
-  clinic_visit_start_date: "'2018-01-01'"
-  clinic_visit_end_date: "'2023-12-31'"
+  clinic_visit_start_date: "'2021-05-01'"
+  clinic_visit_end_date: "'2024-04-30'"
 
 
 # These configurations specify where dbt should look for different types of files.
