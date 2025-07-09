@@ -27,8 +27,8 @@ headache_diagnoses AS (
         ac.condition_source_value, -- added
         ac.diagnosis AS headache_diagnosis,
         CASE
-            WHEN ac.condition_status_concept_id = 32909 THEN 'primary'
-            WHEN ac.condition_status_concept_id = 32903 THEN 'secondary'
+            WHEN ac.condition_status_concept_id = 32903 THEN 'primary'
+            WHEN ac.condition_status_concept_id = 32909 THEN 'secondary'
             ELSE 'other'
         END AS headache_role
     FROM all_conditions ac
@@ -45,7 +45,7 @@ primary_non_headache AS (
     LEFT JOIN headache_visits hv
       ON ac.visit_occurrence_id = hv.visit_occurrence_id
      AND ac.condition_concept_id = hv.condition_concept_id
-    WHERE ac.condition_status_concept_id = 32909
+    WHERE ac.condition_status_concept_id = 32903
       AND hv.condition_concept_id IS NULL
 ),
 
@@ -57,7 +57,7 @@ secondary_non_headache AS (
     LEFT JOIN headache_visits hv
       ON ac.visit_occurrence_id = hv.visit_occurrence_id
      AND ac.condition_concept_id = hv.condition_concept_id
-    WHERE ac.condition_status_concept_id = 32903
+    WHERE ac.condition_status_concept_id = 32909
       AND hv.condition_concept_id IS NULL
 ),
 
